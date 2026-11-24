@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TaskForge issue triage",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["issue_id", "type", "severity", "summary"],
+  "properties": {
+    "issue_id": { "type": "string", "pattern": "^TF-\\d{3}$", "description": "Backlog id, e.g. TF-107" },
+    "type": { "enum": ["bug", "feature", "tech-debt", "validation"], "description": "Kind of work" },
+    "severity": { "enum": ["low", "medium", "high", "unknown"], "description": "User impact if not done; unknown when unclear" },
+    "summary": { "type": "string", "maxLength": 120, "description": "One sentence a PM would understand" },
+    "affected_files": { "type": "array", "items": { "type": "string" }, "description": "Repo-relative paths likely to change" },
+    "estimated_effort": { "enum": ["S", "M", "L"], "description": "S < 1h, M < 1 day, L > 1 day" }
+  }
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 220" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <title>Claude Code Mastery: six-week course map</title>
+  <rect width="960" height="220" rx="14" fill="#faf9f5"/>
+  <text x="32" y="44" font-size="22" font-weight="700" fill="#141413">Claude Code Mastery</text>
+  <text x="32" y="68" font-size="13" fill="#5e5d59">30 labs · 1 hour a day · US$30/month budget · ends at CCA-F readiness</text>
+  <line x1="80" y1="140" x2="880" y2="140" stroke="#d1cfc5" stroke-width="4" stroke-linecap="round"/>
+  <g font-size="12" text-anchor="middle">
+    <g transform="translate(80,140)"><circle r="18" fill="#e8e6dc" stroke="#87867f" stroke-width="2"/><text y="5" font-weight="700" fill="#141413">1</text><text y="42" fill="#141413">Foundations</text><text y="58" fill="#87867f">Basics</text></g>
+    <g transform="translate(240,140)"><circle r="18" fill="#e8e6dc" stroke="#87867f" stroke-width="2"/><text y="5" font-weight="700" fill="#141413">2</text><text y="42" fill="#141413">Context &amp; Memory</text><text y="58" fill="#87867f">Intermediate</text></g>
+    <g transform="translate(400,140)"><circle r="18" fill="#e8e6dc" stroke="#87867f" stroke-width="2"/><text y="5" font-weight="700" fill="#141413">3</text><text y="42" fill="#141413">Config &amp; Extensibility</text><text y="58" fill="#87867f">Intermediate</text></g>
+    <g transform="translate(560,140)"><circle r="18" fill="#f0d9cc" stroke="#d97757" stroke-width="2"/><text y="5" font-weight="700" fill="#141413">4</text><text y="42" fill="#141413">Tools &amp; MCP</text><text y="58" fill="#87867f">Advanced</text></g>
+    <g transform="translate(720,140)"><circle r="18" fill="#f0d9cc" stroke="#d97757" stroke-width="2"/><text y="5" font-weight="700" fill="#141413">5</text><text y="42" fill="#141413">Agents &amp; Automation</text><text y="58" fill="#87867f">Advanced</text></g>
+    <g transform="translate(880,140)"><circle r="18" fill="#d97757" stroke="#b85c3e" stroke-width="2"/><text y="5" font-weight="700" fill="#ffffff">6</text><text y="42" fill="#141413">SDK · Capstone · Cert</text><text y="58" fill="#87867f">Expert</text></g>
+  </g>
+</svg>

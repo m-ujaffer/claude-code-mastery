@@ -1,0 +1,18 @@
+[
+  {
+    "issue_id": "TF-107",
+    "type": "feature",
+    "severity": "medium",
+    "summary": "Add a CSV export endpoint for tasks with an optional project filter.",
+    "affected_files": ["practice-app/src/taskforge/api/tasks.py", "practice-app/src/taskforge/repository.py"],
+    "estimated_effort": "S"
+  },
+  {
+    "issue_id": "TF-109",
+    "type": "tech-debt",
+    "severity": "low",
+    "summary": "Refactor the legacy report builder without changing its byte-for-byte output.",
+    "affected_files": ["practice-app/src/taskforge/legacy/report_builder.py", "practice-app/tests/test_report_builder.py"],
+    "estimated_effort": "M"
+  }
+]

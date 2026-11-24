@@ -1,0 +1,12 @@
+{
+  "name": "taskforge-team",
+  "description": "TaskForge team tooling",
+  "owner": { "name": "TaskForge Team" },
+  "plugins": [
+    {
+      "name": "taskforge-toolkit",
+      "source": "./plugins/taskforge-toolkit",
+      "description": "Issue workflow skill, diff review command and safety hook"
+    }
+  ]
+}

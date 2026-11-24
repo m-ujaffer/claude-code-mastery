@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+dist/
+build/
+
+# Secrets - never commit API keys
+.env
+.env.*
+
+# Claude Code personal files
+.claude/settings.local.json
+CLAUDE.local.md
+
+# Course runtime files
+notes/.cost-ledger.json
+notes/.cost-ledger.json.tmp
+practice-app/*.db
+practice-app/data/
+out/
+.backup/
+
+# OS / editor
+.DS_Store
+.idea/

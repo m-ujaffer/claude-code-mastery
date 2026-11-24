@@ -1,0 +1,41 @@
+{
+  "name": "Claude Code Mastery",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
+  "features": {
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "secrets": {
+    "ANTHROPIC_API_KEY": {
+      "description": "Your personal course API key (budget: US$30/month). Provided by your course admin.",
+      "documentationUrl": "https://github.com/YOUR-ORG/claude-code-mastery/blob/main/setup/SETUP-codespaces.md"
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "charliermarsh.ruff"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python",
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    },
+    "codespaces": {
+      "openFiles": [
+        "README.md",
+        "1_foundations/1_lab1_first_session.md"
+      ]
+    }
+  },
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": { "label": "TaskForge API", "onAutoForward": "notify" }
+  },
+  "hostRequirements": {
+    "cpus": 2,
+    "memory": "4gb"
+  }
+}

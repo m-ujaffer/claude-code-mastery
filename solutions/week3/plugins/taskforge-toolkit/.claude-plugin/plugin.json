@@ -1,0 +1,7 @@
+{
+  "name": "taskforge-toolkit",
+  "version": "0.1.0",
+  "description": "TaskForge team workflow: test-first issue skill, read-only diff review command and a guard hook against destructive shell commands.",
+  "author": { "name": "TaskForge Team" },
+  "keywords": ["workflow", "review", "safety"]
+}
