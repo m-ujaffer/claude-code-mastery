@@ -32,13 +32,15 @@ practise integration.
 
 ## 🛠️ Steps
 
-Commit everything first (`git status` should be clean).
+Commit everything first (`git status` should be clean), and make sure you're on your personal branch.
 
-**1. Create the worktrees.**
+**1. Create the worktrees.** Each feature branch starts from your personal branch and carries your name, so it
+can't clash with other learners' branches in the shared repo:
 
 ```bash
-git worktree add ../tf-107 -b feature/tf-107-csv-export
-git worktree add ../tf-108 -b feature/tf-108-search
+me="$(git branch --show-current)"        # e.g. jane-doe
+git worktree add ../tf-107 -b "$me-tf-107"
+git worktree add ../tf-108 -b "$me-tf-108"
 git worktree list
 ```
 
@@ -62,11 +64,12 @@ Alternate between the terminals, approving and reviewing. Notice how much attent
 
 **4. Commit each branch** with a message mentioning its issue ID.
 
-**5. Integrate.** Back in the main checkout (the original folder):
+**5. Integrate.** Back in the original folder (still on your personal branch):
 
 ```bash
-git merge --no-ff feature/tf-107-csv-export
-git merge --no-ff feature/tf-108-search      # expect a conflict in list_tasks / api/tasks.py
+me="$(git branch --show-current)"
+git merge --no-ff "$me-tf-107"
+git merge --no-ff "$me-tf-108"      # expect a conflict in list_tasks / api/tasks.py
 ```
 
 Resolve the conflict with Claude:
@@ -79,6 +82,7 @@ Resolve the conflict with Claude:
 ```bash
 git worktree remove ../tf-107
 git worktree remove ../tf-108
+git branch -d "$me-tf-107" "$me-tf-108"     # merged, so safe to delete
 ```
 
 ## ✅ Checkpoint
@@ -93,6 +97,12 @@ Cap: **$1.60** for both sessions plus the merge. Add up the `/cost` of each sess
 
 ```bash
 uv run labcheck log w5d22 1.30 "TF-107+108 parallel"
+```
+
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w5d22: Parallel work with git worktrees (TF-107 + TF-108)" && git push
 ```
 
 ## 🚀 Stretch

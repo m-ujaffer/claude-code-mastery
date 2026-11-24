@@ -78,6 +78,12 @@ Cap: **$0.60**.
 uv run labcheck log w2d7 0.45 "rules experiment"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w2d7: Rules, memory and checking that they work" && git push
+```
+
 ## 🚀 Stretch
 
 - Add a rule for `practice-app/src/taskforge/legacy/**`: "Do not change behaviour; add

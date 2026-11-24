@@ -33,9 +33,12 @@ cost and limits honestly.
   Name the caps that bound the worst case.
 - **Limitations**: what it can't do, known failure modes, and when a human must step in.
 
-**6. Ship it.** Open a PR for the capstone. If your Day 24 workflow is active, let Claude review it in CI. Merge when you're happy.
+**6. Ship it.** If you built the capstone on a feature branch, open a PR **into your personal branch**
+(`gh pr create --fill --base <your-branch>`). If your Day 24 workflow is active, let Claude review it in CI. Merge when
+you're happy, then make sure your personal branch is pushed.
 
-**7. Share** (optional): copy a short write-up into `community_contributions/` and open a PR to the course repo.
+**7. Share** (optional): copy a short write-up into `community_contributions/` on a separate branch made from `main`,
+and open a PR **into `main`**. That's the one PR to `main` in the course, and your instructor reviews it.
 
 ## ✅ Checkpoint
 
@@ -53,6 +56,12 @@ uv run labcheck budget
 ```
 
 Week 6 total (excluding Day 30, which is free) should be **≤ $6**.
+
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w6d29: Capstone day 2, review, harden, ship" && git push
+```
 
 ## 🚀 Stretch
 

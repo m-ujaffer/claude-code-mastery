@@ -87,6 +87,12 @@ Cap: **$1.00**. Add up the `total_cost_usd` values your runs printed:
 uv run labcheck log w5d23 0.55 "headless pipeline"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w5d23: Headless mode and scripted pipelines" && git push
+```
+
 ## 🚀 Stretch
 
 - Add `--bare` with an explicit `--mcp-config .mcp.json`. Compare startup time and cost.

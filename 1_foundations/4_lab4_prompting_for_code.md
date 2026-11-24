@@ -77,6 +77,12 @@ Cap: **$0.70** for both attempts. Log the sum:
 uv run labcheck log w1d4 0.55 "vague vs precise"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w1d4: Prompting for code (TF-102)" && git push
+```
+
 ## 🚀 Stretch
 
 Add one more variation: the precise prompt **plus** "Ask me up to 3 clarifying questions before

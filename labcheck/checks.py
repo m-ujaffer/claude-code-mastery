@@ -47,8 +47,19 @@ def notes_answered(c: Ctx, rel: str, keys: list[str]) -> bool:
 # =============================================================== Week 1
 
 
+PROGRESS_BRANCH = re.compile(r"^[a-z]+(-[a-z]+)+$")  # firstname-lastname, e.g. jane-doe
+
+
 @lab("w1d1", "Your first Claude Code session")
 def w1d1(c: Ctx):
+    local = c.git("branch", "--format=%(refname:short)").split()
+    mine = [b for b in local if PROGRESS_BRANCH.match(b)]
+    if c.check(bool(mine), "a personal progress branch named firstname-lastname exists",
+               "git switch -c jane-doe   (lowercase, hyphenated: see step 1)"):
+        remote = c.git("branch", "-r", "--format=%(refname:short)").split()
+        pushed = [b for b in mine if f"origin/{b}" in remote]
+        c.check(bool(pushed), f"your branch {mine[0]} is pushed to GitHub",
+                f"git push -u origin {mine[0]}")
     c.check(shutil.which("claude") is not None, "Claude Code CLI is installed",
             "rebuild the Codespace or see setup/troubleshooting.md")
     key = os.environ.get("ANTHROPIC_API_KEY", "")
@@ -457,7 +468,8 @@ def w5d24(c: Ctx):
         c.check(False, "workflow is valid YAML")
         return
     text = c.read(rel)
-    c.check("anthropics/claude-code-action@v1" in text, "uses anthropics/claude-code-action@v1")
+    c.check(re.search(r"anthropics/claude-code-action@(v1\b|[0-9a-f]{40}\b)", text) is not None,
+            "uses anthropics/claude-code-action@v1 (or pinned to a full commit SHA)")
     c.check("secrets.ANTHROPIC_API_KEY" in text, "API key comes from repository secrets")
     c.check("--max-turns" in text, "claude_args caps --max-turns")
     triggers = wf.get("on", wf.get(True, {}))  # YAML 1.1 parses `on:` as True

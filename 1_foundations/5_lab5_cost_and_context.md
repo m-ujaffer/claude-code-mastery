@@ -80,6 +80,12 @@ uv run labcheck log w1d5 0.60 "context + TF-103"
 
 Week 1 total should be **≤ $3**. If it isn't, look at your log: which lab ran over, and why?
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w1d5: Context and cost hygiene + mini-feature (TF-103)" && git push
+```
+
 ## 🚀 Stretch
 
 - Try `/effort` at a lower setting for a trivial request, such as renaming a variable. Did it change the cost or the quality?

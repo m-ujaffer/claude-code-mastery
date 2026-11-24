@@ -82,6 +82,12 @@ Cap: **$0.80**.
 uv run labcheck log w3d14 0.55 "styles/statusline/plugins"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w3d14: Output styles, status line and plugins" && git push
+```
+
 ## 🚀 Stretch
 
 - Use `/statusline` and let Claude generate a status line from a description. Compare it with yours.

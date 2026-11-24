@@ -101,6 +101,12 @@ Cap: **$0.50**.
 uv run labcheck log w1d2 0.30 "modes + rewind"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w1d2: Permission modes, mentions, bash mode and rewind" && git push
+```
+
 ## 🚀 Stretch
 
 - Try `@practice-app/src/taskforge/` (a directory) in a prompt. What does Claude get?

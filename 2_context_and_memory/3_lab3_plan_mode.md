@@ -76,6 +76,12 @@ Cap: **$1.00**. Plan mode often makes the *total* cheaper, even though planning 
 uv run labcheck log w2d8 0.85 "TF-104 plan mode"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w2d8: Plan mode for multi-file work (TF-104)" && git push
+```
+
 ## 🚀 Stretch
 
 - In a **new** session, give Claude only `@notes/plans/tf-104-plan.md` and ask it to review the

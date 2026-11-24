@@ -101,6 +101,12 @@ Cap: **$0.80**. Log the sum of the `total_cost_usd` values printed by your runs,
 uv run labcheck log w6d26 0.65 "release notes agent"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w6d26: The Claude Agent SDK" && git push
+```
+
 ## 🚀 Stretch
 
 - Rebuild it as a `claude -p --json-schema` script (Day 19 style) instead of an SDK agent with a save tool. Compare the two designs.

@@ -89,6 +89,12 @@ uv run labcheck log w4d20 0.80 "standup skill"
 
 Week 4 total should be **≤ $6**.
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w4d20: Mini-project, an MCP-powered standup" && git push
+```
+
 ## 🚀 Stretch
 
 - Run it headless as a scheduled job: `claude -p "/standup 1" --max-turns 6 --max-budget-usd 0.15`.

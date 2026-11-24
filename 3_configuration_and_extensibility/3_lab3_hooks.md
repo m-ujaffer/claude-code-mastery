@@ -99,6 +99,12 @@ Cap: **$1.00**.
 uv run labcheck log w3d13 0.70 "hooks"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w3d13: Hooks, deterministic guardrails and automation" && git push
+```
+
 ## 🚀 Stretch
 
 - Instead of blocking, use the JSON output form to **ask** the user: print

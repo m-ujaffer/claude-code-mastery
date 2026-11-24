@@ -98,6 +98,12 @@ Cap: **$0.80**.
 uv run labcheck log w4d16 0.50 "first MCP server"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w4d16: Connect an MCP server" && git push
+```
+
 ## 🚀 Stretch
 
 - Add the `time` reference server at **local** scope (`claude mcp add time -- uvx mcp-server-time`). Where did

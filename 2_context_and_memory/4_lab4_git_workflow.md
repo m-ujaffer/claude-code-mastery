@@ -24,11 +24,15 @@ Read [Guide 02](../guides/02_git_and_github.md) if git isn't second nature yet.
 ## 🛠️ Steps
 
 Read **TF-105** in [ISSUES.md](../practice-app/ISSUES.md). Make sure Days 6–8 are committed and pushed:
-`git status`, then `git push`.
+`git status`, then `git push`. You should be on your personal branch (`git branch --show-current`).
+
+> **Branches in the shared course repo.** Your personal branch (`jane-doe`) plays the role that `main` plays in a
+> normal team repo. Feature branches start from it and PRs merge back **into it**, never into `main`. Prefix
+> feature branches with your name (`jane-doe-tf-105`) so they don't clash with other learners'.
 
 **1. Branch.** Start `claude` (`/clear` if needed):
 
-> Create a branch feature/tf-105-completed-at from main.
+> Create a branch named `<my current branch>-tf-105` (for example jane-doe-tf-105) from my current branch.
 
 **2. Implement test-first** (you know the drill):
 
@@ -44,8 +48,9 @@ Check with `!git log --oneline -5`. Are the messages accurate?
 
 **4. Push and open a PR.**
 
-> Push the branch and open a pull request with gh. The description should summarise the change,
-> list the acceptance criteria from TF-105 as a checklist, and explain how it was tested.
+> Push the branch and open a pull request with gh **into my personal branch** (`--base jane-doe`, not main).
+> The description should summarise the change, list the acceptance criteria from TF-105 as a checklist,
+> and explain how it was tested.
 
 Open the PR in the browser (`!gh pr view --web`). The **tests** workflow in `.github/workflows/tests.yml`
 runs on it.
@@ -57,9 +62,9 @@ When CI goes red:
 
 **6. Merge** when green:
 
-> Squash-merge the PR with gh, then switch to main and pull.
+> Squash-merge the PR with gh and delete the feature branch, then switch back to my personal branch and pull.
 
-(Squash-merging gives you one commit on main. Your branch's commits still exist on the PR and branch.)
+(Squash-merging gives you one commit on your personal branch. The individual commits are still visible on the PR.)
 
 ## ✅ Checkpoint
 
@@ -73,6 +78,12 @@ Cap: **$0.80**.
 
 ```bash
 uv run labcheck log w2d9 0.70 "TF-105 PR flow"
+```
+
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w2d9: Git and GitHub workflow (TF-105)" && git push
 ```
 
 ## 🚀 Stretch

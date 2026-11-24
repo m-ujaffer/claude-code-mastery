@@ -8,11 +8,13 @@ Codespaces is the supported path, and labs are written for it. If you must run l
    ```
 2. Install **Claude Code** by following the current instructions at
    https://code.claude.com/docs (Getting started).
-3. Clone *your* copy of the repo (see Step 1 of [SETUP-codespaces.md](SETUP-codespaces.md)), then run:
+3. Clone the course repository (you need write access; see Step 1 of [SETUP-codespaces.md](SETUP-codespaces.md)),
+   then run:
    ```bash
-   cd claude-code-mastery
+   cd <course-repo>
    bash .devcontainer/post-create.sh
    ```
+   You'll create and push your `firstname-lastname` branch in Day 1, exactly as in Codespaces.
 4. Export your course key **in your shell profile, not in a file inside the repo**:
    ```bash
    export ANTHROPIC_API_KEY="sk-ant-..."

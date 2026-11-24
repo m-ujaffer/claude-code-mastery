@@ -147,6 +147,8 @@ def cmd_lint_labs(args, root: Path) -> int:
     for f in sorted(root.glob("[1-6]_*/[0-9]_lab*.md")):
         text = f.read_text()
         missing = [h for h in required if h not in text]
+        if "## 📤 Push your progress" not in text or "git push" not in text:
+            missing.append("## 📤 Push your progress (with git push)")
         lab_ids = re.findall(r"labcheck (w\dd\d+)", text)
         unknown = [i for i in lab_ids if i not in LABS]
         if missing or unknown:

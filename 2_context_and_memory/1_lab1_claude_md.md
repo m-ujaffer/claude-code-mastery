@@ -87,6 +87,12 @@ Cap: **$0.60**.
 uv run labcheck log w2d6 0.50 "CLAUDE.md"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w2d6: CLAUDE.md, your project's memory" && git push
+```
+
 ## 🚀 Stretch
 
 - Create `CLAUDE.local.md` with a personal preference (for example, "Explain trade-offs briefly before large edits").

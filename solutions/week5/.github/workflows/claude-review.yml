@@ -41,12 +41,14 @@ jobs:
             If it looks good, say so briefly.
           claude_args: "--max-turns 5 --model sonnet"
 
+  # Note: issue_comment workflows only run from the default branch (main), so this job
+  # works once the workflow is merged to main. The review job above runs from the PR itself.
   assist:
     if: >-
       github.event_name == 'issue_comment' &&
       github.event.issue.pull_request &&
       contains(github.event.comment.body, '@claude') &&
-      github.event.comment.author_association == 'OWNER'
+      contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.comment.author_association)
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:

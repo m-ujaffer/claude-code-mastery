@@ -1,8 +1,8 @@
 name: tests
 
+# Runs on every push, so each learner's daily push to their branch shows a green or red check.
 on:
   push:
-    branches: [main]
   pull_request:
 
 permissions:
