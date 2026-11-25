@@ -45,15 +45,18 @@ Each week has five labs (`1_lab1_...md` to `5_lab5_...md`). Most weeks end with 
 | 0–5 | **Read** the lab's goal and short primer |
 | 5–45 | **Do** the numbered steps in Claude Code. Each one gives you the exact prompt to type |
 | 45–55 | **Verify** with `uv run labcheck wNdM` (free: it never calls the API) and answer the reflection questions |
-| 55–60 | **Log** what the lab cost: `uv run labcheck log wNdM 0.42 "note"` |
+| 55–60 | **Log** what the lab cost (`uv run labcheck log wNdM 0.42 "note"`) and **push** to your branch: `git add -A && git commit -m "wNdM: …" && git push` |
 
 If you finish early, every lab has a **🚀 Stretch** exercise. If you fall behind,
 [checkpoints/](checkpoints) lets you jump to the start of any week.
 
 ## Getting started
 
-1. Follow **[setup/SETUP-codespaces.md](setup/SETUP-codespaces.md)**. It takes about 10 minutes, and your admin gives you an API key.
-2. Open **[1_foundations/1_lab1_first_session.md](1_foundations/1_lab1_first_session.md)** and begin.
+1. Follow **[setup/SETUP-codespaces.md](setup/SETUP-codespaces.md)**. It takes about 10 minutes, and your admin gives you an API key
+   and access to the course repository.
+2. Open **[1_foundations/1_lab1_first_session.md](1_foundations/1_lab1_first_session.md)** and begin. Step 1 creates
+   **your progress branch** (`firstname-lastname`). You'll push to it at the end of every day, so your instructor can
+   see where you are.
 
 Always start Claude Code from the **repo root** (`claude`). The course's settings,
 status line and labcheck all assume you do.

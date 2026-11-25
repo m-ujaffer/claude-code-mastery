@@ -91,6 +91,12 @@ Cap: **$1.00**.
 uv run labcheck log w4d18 0.70 "resources, prompts, security"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w4d18: Resources, prompts and MCP security" && git push
+```
+
 ## 🚀 Stretch
 
 - Read the MCP server code of a popular open-source server you might use at work. Apply the risk table: would you approve it?

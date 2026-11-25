@@ -64,6 +64,12 @@ Cap: **$0.40**.
 uv run labcheck log w6d27 0.25 "design review"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w6d27: Agentic architecture design review" && git push
+```
+
 ## 🚀 Stretch
 
 Draw the architecture as a Mermaid diagram in the doc. Which arrows carry untrusted data?

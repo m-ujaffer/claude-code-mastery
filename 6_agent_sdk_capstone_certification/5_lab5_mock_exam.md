@@ -56,6 +56,12 @@ uv run labcheck w6d30
 
 Nothing to log today. Look back over your whole cost log: which week cost the most, and what would you do differently?
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w6d30: Mock CCA-F exam and readiness plan" && git push
+```
+
 ## 🚀 Stretch
 
 Write five **new** scenario questions in the exam style about the area you found hardest, with explanations. Writing

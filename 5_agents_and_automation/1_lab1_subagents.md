@@ -92,6 +92,12 @@ Cap: **$1.20**. Subagent token use is included in `/cost`.
 uv run labcheck log w5d21 0.90 "subagents"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w5d21: Subagents" && git push
+```
+
 ## 🚀 Stretch
 
 - Give the reviewer a `PreToolUse` hook in its frontmatter that only allows `git diff|log|show` Bash

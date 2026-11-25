@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - uses: anthropics/claude-code-action@v1
+      - uses: anthropics/claude-code-action@eb56b6666facdbd501035f4a0269d8caee2e7a8b # v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           prompt: |
@@ -41,12 +41,14 @@ jobs:
             If it looks good, say so briefly.
           claude_args: "--max-turns 5 --model sonnet"
 
+  # Note: issue_comment workflows only run from the default branch (main), so this job
+  # works once the workflow is merged to main. The review job above runs from the PR itself.
   assist:
     if: >-
       github.event_name == 'issue_comment' &&
       github.event.issue.pull_request &&
       contains(github.event.comment.body, '@claude') &&
-      github.event.comment.author_association == 'OWNER'
+      contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.comment.author_association)
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -58,7 +60,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - uses: anthropics/claude-code-action@v1
+      - uses: anthropics/claude-code-action@eb56b6666facdbd501035f4a0269d8caee2e7a8b # v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           claude_args: "--max-turns 8 --model sonnet"

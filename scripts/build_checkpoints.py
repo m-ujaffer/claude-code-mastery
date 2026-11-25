@@ -8,8 +8,9 @@ How it works: solutions/weekN/ holds *overlays*. Each overlay mirrors the repo
 layout and contains full files as they look at the end of week N.
 - A checkpoint for "week-N-start" is the pristine practice-app with the
   practice-app overlays of all earlier weeks applied.
-- --verify copies the whole repo to a temp dir, applies every overlay, makes
-  the git history some labs expect, and runs `labcheck --all` there.
+- --verify copies the whole repo to a temp dir, simulates a learner's pushed
+  `jane-doe` progress branch, applies every overlay with the git history some
+  labs expect, and runs `labcheck --all` there.
 """
 
 from __future__ import annotations
@@ -65,13 +66,26 @@ def build_checkpoints() -> None:
     )
 
 
+LEARNER = "jane-doe"  # the simulated learner's progress branch (firstname-lastname)
+
+
 def git(cwd: Path, *args: str) -> None:
     subprocess.run(["git", *args], cwd=cwd, check=True, capture_output=True)
+
+
+def feature(work: Path, branch: str, message: str) -> None:
+    """Commit the pending changes on a feature branch and merge it back into the personal branch."""
+    git(work, "switch", "-q", "-c", branch)
+    git(work, "add", "-A")
+    git(work, "commit", "-q", "-m", message)
+    git(work, "switch", "-q", LEARNER)
+    git(work, "merge", "-q", "--no-ff", "-m", f"Merge {branch}", branch)
 
 
 def verify() -> int:
     with tempfile.TemporaryDirectory() as tmp:
         work = Path(tmp) / "repo"
+        origin = Path(tmp) / "origin.git"
         shutil.copytree(ROOT, work, ignore=shutil.ignore_patterns(
             ".git", ".venv", "__pycache__", "*.db", ".pytest_cache", "notes"))
         (work / "notes").mkdir()
@@ -80,23 +94,23 @@ def verify() -> int:
         git(work, "config", "user.name", "verify")
         git(work, "add", "-A")
         git(work, "commit", "-q", "-m", "chore: starting point")
+        # Day 1: a learner's progress branch, pushed to the shared repo (a local bare repo here).
+        subprocess.run(["git", "init", "-q", "--bare", str(origin)], check=True)
+        git(work, "remote", "add", "origin", str(origin))
+        git(work, "push", "-q", "origin", "main")
+        git(work, "switch", "-q", "-c", LEARNER)
+        git(work, "push", "-q", "-u", "origin", LEARNER)
         for week in sorted(int(p.name[4:]) for p in SOLUTIONS.glob("week*")):
             overlay(SOLUTIONS / f"week{week}", work)
-            if week == 2:  # w2d9 expects a feature branch with a Conventional Commit
-                git(work, "checkout", "-q", "-b", "feature/tf-105-completed-at")
-                git(work, "add", "-A")
-                git(work, "commit", "-q", "-m", "feat(tasks): record completed_at (TF-105)")
-                git(work, "checkout", "-q", "main")
-                git(work, "merge", "-q", "--no-ff", "-m", "Merge TF-105", "feature/tf-105-completed-at")
-            elif week == 5:  # w5d22 expects TF-107 and TF-108 commits plus a merge
-                git(work, "checkout", "-q", "-b", "feature/tf-107-108")
-                git(work, "add", "-A")
-                git(work, "commit", "-q", "-m", "feat(tasks): CSV export (TF-107) and search (TF-108)")
-                git(work, "checkout", "-q", "main")
-                git(work, "merge", "-q", "--no-ff", "-m", "Merge TF-107 and TF-108", "feature/tf-107-108")
+            if week == 2:  # w2d9: a feature branch with a Conventional Commit, merged into the personal branch
+                feature(work, f"{LEARNER}-tf-105", "feat(tasks): record completed_at (TF-105)")
+            elif week == 5:  # w5d22: TF-107 and TF-108 commits plus a merge
+                feature(work, f"{LEARNER}-tf-107-108",
+                        "feat(tasks): CSV export (TF-107) and search (TF-108)")
             else:
                 git(work, "add", "-A")
-                git(work, "commit", "-q", "--allow-empty", "-m", f"chore: week {week} solutions")
+                git(work, "commit", "-q", "--allow-empty", "-m", f"w{week}: week {week} solutions")
+            git(work, "push", "-q")
         # Executable bits are not always preserved by copies from Windows checkouts.
         for script in (work / "scripts").glob("*.sh"):
             script.chmod(0o755)

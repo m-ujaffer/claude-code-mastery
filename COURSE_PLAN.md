@@ -14,6 +14,8 @@ and each is checked for free with `uv run labcheck <id>`.
 4. **Verifiable.** `labcheck` runs hidden acceptance tests and config checks with zero API spend. Reference
    solutions are verified end to end (`scripts/build_checkpoints.py --verify`).
 5. **Certification-aligned.** Every lab is tagged with a CCA-F domain; the course ends with a 60-question timed mock.
+6. **Visible progress.** Everyone works on a personal `firstname-lastname` branch in the shared course repo, and
+   pushes a `wNdM: …` commit at the end of every day.
 
 ## The 30 days
 

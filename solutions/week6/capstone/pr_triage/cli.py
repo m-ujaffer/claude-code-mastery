@@ -1,7 +1,9 @@
 """PR triage bot.
 
-    uv run python -m pr_triage.cli --base main            (run from capstone/)
-    uv run python -m pr_triage.cli --base main --dry-run  (print the prompt, no spend)
+    uv run python -m pr_triage.cli --base jane-doe            (run from capstone/, on a feature branch)
+    uv run python -m pr_triage.cli --base jane-doe --dry-run  (print the prompt, no spend)
+
+--base is the branch the PR will merge into: your personal branch in the course repo.
 """
 
 from __future__ import annotations
@@ -33,7 +35,7 @@ def call_model(prompt: str, budget: float) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--base", default="main")
+    parser.add_argument("--base", required=True, help="branch the PR merges into, e.g. jane-doe")
     parser.add_argument("--budget", type=float, default=0.10)
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()

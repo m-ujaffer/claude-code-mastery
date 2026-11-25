@@ -27,7 +27,7 @@ must not call the API (and so must cost nothing).
 ## The briefs (pick one)
 
 ### A. PR triage bot
-Given a git diff (`git diff main...HEAD`), produce a schema-validated triage: risk level, affected TF issues,
+Working on a feature branch made from your personal branch, take its diff (`git diff jane-doe...HEAD`) and produce a schema-validated triage: risk level, affected TF issues,
 missing tests, suggested reviewers (from `git log`). It posts a Markdown summary.
 *Uses:* Agent SDK or `claude -p --json-schema`, structured output, read-only tools.
 
@@ -76,6 +76,12 @@ Cap: **$2.50**. If you're approaching it, stop running the full agent and keep b
 
 ```bash
 uv run labcheck log w6d28 1.80 "capstone build"
+```
+
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w6d28: Capstone day 1, build" && git push
 ```
 
 ## 🚀 Stretch

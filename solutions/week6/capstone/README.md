@@ -7,8 +7,8 @@ suggested reviewers, posted as a Markdown summary for a human to act on.
 ## How to run
 ```bash
 cd capstone
-uv run python -m pr_triage.cli --base main --dry-run   # see the exact prompt (free)
-uv run python -m pr_triage.cli --base main             # real run (about $0.02)
+uv run python -m pr_triage.cli --base jane-doe --dry-run   # see the exact prompt (free)
+uv run python -m pr_triage.cli --base jane-doe             # real run (about $0.02)
 uv run pytest -q                                       # shell tests, no API calls
 ```
 

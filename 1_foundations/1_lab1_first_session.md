@@ -10,8 +10,8 @@
 
 ## 🎯 Goal
 
-Start Claude Code, use it to understand an unfamiliar codebase, approve your first
-file write, and find out exactly what that cost.
+Set up the branch you'll use for the whole course, start Claude Code, use it to understand an
+unfamiliar codebase, approve your first file write, and find out exactly what that cost.
 
 ## 📖 Primer
 
@@ -26,13 +26,28 @@ Three things to notice today:
 
 ## 🛠️ Steps
 
-**1. Make sure you're set up.** In the terminal, from the repo root:
+**1. Create your progress branch.** You'll do the whole course on your own branch in the shared
+course repo, and push it at the end of every day. That's how your instructor tracks where you are.
+Name it after yourself in the format `firstname-lastname`, lowercase with hyphens (for example `jane-doe`,
+or `mary-jane-watson`). In the terminal, from the repo root:
+
+```bash
+git switch -c firstname-lastname          # e.g. git switch -c jane-doe
+git push -u origin firstname-lastname     # publishes it and sets up tracking
+```
+
+From now on, `git push` with no arguments pushes to your branch.
+
+> **Never push to `main`.** It's the course's starting point for everyone. Your work lives on your branch.
+> If you open a new Codespace later, run `git switch firstname-lastname` before you start.
+
+**2. Make sure you're set up:**
 
 ```bash
 uv run labcheck doctor
 ```
 
-**2. Start Claude Code** from the repo root and look around:
+**3. Start Claude Code** from the repo root and look around:
 
 ```bash
 claude
@@ -41,24 +56,24 @@ claude
 Type `/help` and skim the list of slash commands. Then type `/status` to see the model,
 account and working directory. Confirm it's using your **API key**.
 
-**3. Ask your first question.** Type:
+**4. Ask your first question.** Type:
 
 > What is in this repository? Give me a 5-bullet overview. Don't read more than you need.
 
 Watch the tool calls scroll by (`Read`, `Glob`, `Grep`, …). Notice which files it chose.
 
-**4. Narrow the question.** Now ask about the practice app specifically:
+**5. Narrow the question.** Now ask about the practice app specifically:
 
 > Explain the architecture of practice-app/src/taskforge. How does a request to
 > POST /tasks flow through main.py, api/tasks.py, repository.py and services.py?
 
-**5. Ask something you'd normally grep for:**
+**6. Ask something you'd normally grep for:**
 
 > Where is "overdue" decided, and is there anything suspicious about how it's done?
 
 (Don't fix anything yet! That's Day 3. Just notice what it finds.)
 
-**6. Your first file write.** Ask:
+**7. Your first file write.** Ask:
 
 > Write what you've told me into notes/taskforge-overview.md: purpose, the layers
 > (api, repository, services, clock, db, legacy), how a POST /tasks request flows,
@@ -66,13 +81,13 @@ Watch the tool calls scroll by (`Read`, `Glob`, `Grep`, …). Notice which files
 
 Claude will ask permission to create the file. Read the proposed content, then approve it.
 
-**7. Check the cost.** Type `/cost`. (Some newer versions call this `/usage`.) Note:
+**8. Check the cost.** Type `/cost`. (Some newer versions call this `/usage`.) Note:
 - the total cost
 - input vs output tokens. Which dominates, and why?
 
 Compare it with the `session $` in the status line.
 
-**8. Exit** with `/exit`.
+**9. Exit** with `/exit`.
 
 ## ✅ Checkpoint
 
@@ -88,6 +103,17 @@ Cap: **$0.40**. Log what `/cost` said:
 uv run labcheck log w1d1 0.25 "first session"
 ```
 
+## 📤 Push your progress
+
+Every day ends the same way: commit your work and push it to your branch. Start the commit message
+with the lab id (`w1d1:`, `w1d2:`, …) so your progress is easy to read from the branch history:
+
+```bash
+git add -A && git commit -m "w1d1: first session" && git push
+```
+
+Check it worked: `git status` should say your branch is up to date with `origin/firstname-lastname`.
+
 ## 🚀 Stretch
 
 - Run `claude -p "In one sentence, what does practice-app/src/taskforge/clock.py do?"` in the shell.
@@ -102,9 +128,9 @@ Today you produced exactly that kind of document.
 
 ## 🤔 Reflect
 
-1. Which files did Claude read in step 3, and which did it skip? Was that the right call?
+1. Which files did Claude read in step 4, and which did it skip? Was that the right call?
 2. Why was the output-token count so much smaller than the input-token count?
-3. What would you have done differently in step 3 to make it cheaper?
+3. What would you have done differently in step 4 to make it cheaper?
 
 ## ➡️ Next
 

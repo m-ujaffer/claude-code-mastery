@@ -106,6 +106,12 @@ Cap: **$1.20**.
 uv run labcheck log w4d17 0.95 "TaskForge MCP server"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w4d17: Build an MCP server for TaskForge" && git push
+```
+
 ## 🚀 Stretch
 
 - Write pytest tests for the MCP tools (call `mcp.call_tool(...)` against a temporary DB).

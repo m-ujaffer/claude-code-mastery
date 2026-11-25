@@ -83,6 +83,12 @@ Cap: **$0.60**. `/cost`, then:
 uv run labcheck log w1d3 0.45 "TF-101"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w1d3: Fix a bug test-first (TF-101)" && git push
+```
+
 ## 🚀 Stretch
 
 - Ask Claude where else in the codebase "overdue" is computed. (Hint: `legacy/`.) Is it consistent with the fix?

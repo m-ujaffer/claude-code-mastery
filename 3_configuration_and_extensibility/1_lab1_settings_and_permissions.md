@@ -96,6 +96,12 @@ Cap: **$0.60**.
 uv run labcheck log w3d11 0.40 "permissions"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w3d11: Settings and permissions" && git push
+```
+
 ## 🚀 Stretch
 
 - Start Claude with `claude --permission-mode plan`. When would a team script do that?

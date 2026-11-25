@@ -103,6 +103,12 @@ Cap: **$0.90**.
 uv run labcheck log w3d12 0.70 "skills"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w3d12: Skills and slash commands" && git push
+```
+
 ## 🚀 Stretch
 
 - Add `allowed-tools` to the `review-diff` command so it can only run `git diff` (no edits). Test it.

@@ -31,14 +31,31 @@ quietly spending your budget.
 - **`timeout-minutes`** and **`--max-turns`**
 - **Minimal `permissions:`**: read contents, write PR comments, nothing more
 
+**Supply-chain hardening: pin third-party actions.** `@v1` is a *tag*, and the action's maintainers can move it to new
+code at any time. This step receives your API key, so whatever code the tag points to can read that key. In production
+workflows, pin the action to a full 40-character commit SHA and keep the tag as a comment:
+
+```yaml
+- uses: anthropics/claude-code-action@<40-char-commit-sha> # v1
+```
+
+Find the commit the tag currently points to (it's an annotated tag, so use the `^{}` line):
+
+```bash
+git ls-remote https://github.com/anthropics/claude-code-action.git 'refs/tags/v1' 'refs/tags/v1^{}'
+```
+
+Then let **Dependabot** (`.github/dependabot.yml` with `package-ecosystem: "github-actions"`) or Renovate propose SHA
+bumps as reviewable PRs. In this lab, either `@v1` or a pinned SHA passes labcheck.
+
 ## 🛠️ Steps
 
-**1. Connect GitHub to Claude.** The simplest path is to run `/install-github-app` inside `claude` and follow
-the prompts. It installs the Claude GitHub App on your repo and can store the API key secret for you. If that's not
-possible in your org, follow the manual steps on the docs' *GitHub Actions* page: install the app, then add
-`ANTHROPIC_API_KEY` under **Settings → Secrets and variables → Actions**.
+**1. Check the CI connection.** In the shared course repo, your instructor has already installed the Claude GitHub
+App and added an `ANTHROPIC_API_KEY` **Actions** secret, backed by a separate, spend-limited CI workspace
+(see `setup/ADMIN-api-keys.md`). You don't need to do anything. In your own repos at work, you'd run
+`/install-github-app` inside `claude`, or follow the manual steps on the docs' *GitHub Actions* page.
 
-> Your course key's $30 cap applies to CI too. That's why the guards below aren't optional.
+> CI runs are shared across the cohort's CI budget. That's why the guards below aren't optional.
 
 **2. Write the workflow.** Ask Claude to create `.github/workflows/claude-review.yml` to this spec, then review it:
 
@@ -49,16 +66,20 @@ possible in your org, follow the manual steps on the docs' *GitHub Actions* page
   `pull-requests: write`, `id-token: write`. Steps: checkout with `fetch-depth: 1`, then `anthropics/claude-code-action@v1`
   with a `prompt` asking for a review against `CLAUDE.md` and `practice-app/ISSUES.md` (risks first, at most 5
   findings, one summary comment), and `claude_args: "--max-turns 5 --model sonnet"`
-- job **assist**: `if:` the comment is on a PR, contains `@claude`, and `author_association == 'OWNER'`.
+- job **assist**: `if:` the comment is on a PR, contains `@claude`, and the author is trusted
+  (`author_association` is `OWNER`, `MEMBER` or `COLLABORATOR`).
   No `prompt` (interactive mode). `claude_args: "--max-turns 8"`
 
-**3. Push it, then open a PR that should trigger it.** For example, ask Claude to make a small improvement to
-`practice-app/src/taskforge/api/projects.py` on a new branch, then `gh pr create --fill`.
+**3. Push it, then open a PR that should trigger it.** Commit the workflow to your personal branch and push. Then
+ask Claude to make a small improvement to `practice-app/src/taskforge/api/projects.py` on a new branch named
+`<your-branch>-ci-demo`, push it, and open a PR **into your personal branch**:
+`gh pr create --fill --base <your-branch>`. For `pull_request` events, GitHub runs the workflow file from the PR
+itself, so your new workflow runs even though it isn't on `main`.
 
 **4. Watch it.** `gh pr checks --watch`, then read the review comment on the PR. Is it useful? Is it too noisy?
 
-**5. Try `@claude`.** Comment on the PR: `@claude add a test for the change in this PR`. Watch the run, then review
-the commit it pushes **before** merging.
+**5. Merge** the PR into your personal branch once you've read the review (`gh pr merge --squash --delete-branch`),
+then `git pull`.
 
 **6. Check the cost.** Your CI runs show up in the Console (via your admin) rather than in your status line.
 Estimate from the run logs (look for the cost summary) and log it.
@@ -77,8 +98,19 @@ Cap: **$1.20** including CI.
 uv run labcheck log w5d24 0.90 "CI review + @claude"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w5d24: Claude in CI with GitHub Actions" && git push
+```
+
 ## 🚀 Stretch
 
+- **Why didn't `@claude` work?** Comment `@claude add a test for the change in this PR` on your PR. Nothing happens,
+  because `issue_comment` workflows only ever run from the repo's **default branch** (`main`), and your workflow
+  lives on your branch. This is a deliberate GitHub security rule: comments can't run workflow code from
+  unmerged branches. If your instructor has merged a reference workflow to `main`, try it, then review the commit
+  it pushes **before** merging.
 - Make the review job post **inline** comments only for high-severity findings.
 - Add a scheduled workflow (`on: schedule`) that runs your Day 23 nightly report. Think hard about the cost
   before enabling it, and set a tight `--max-budget-usd`.

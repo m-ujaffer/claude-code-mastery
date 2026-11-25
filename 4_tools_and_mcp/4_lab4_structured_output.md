@@ -96,6 +96,12 @@ values your script printed:
 uv run labcheck log w4d19 0.60 "triage script (2 runs + authoring)"
 ```
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w4d19: Structured output from headless Claude" && git push
+```
+
 ## 🚀 Stretch
 
 - Run your script with `--bare`. What changed in cost and behaviour?

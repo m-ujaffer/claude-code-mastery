@@ -7,21 +7,23 @@ anything ever gets into a weird state you can throw the Codespace away and make 
 ## Before you begin
 
 You need:
-- a **GitHub account** (your work account is fine)
+- a **GitHub account** (your work account is fine) with **write access to the course repository**.
+  Your admin adds you; accept the invitation email if you get one.
 - the **Anthropic API key** your course admin sent you. It starts with `sk-ant-`.
   Treat it like a password: never paste it into a file, a chat or a commit.
 
 ---
 
-## Step 1: Make your own copy of the course
+## Step 1: Open the course repository
 
-You need your **own** repository because in Weeks 2 and 5 you'll open pull requests and
-run GitHub Actions against it.
+Everyone in the cohort works in the **same course repository**, each on their **own branch**.
+You'll create your branch (`firstname-lastname`, for example `jane-doe`) in the very first lab, and push it at the
+end of every day. That's how your instructor follows your progress.
 
-1. Open the course repository on GitHub.
-2. Click **Use this template**, then **Create a new repository**.
-3. Owner: you (or your team's org, if your admin says so). Name: `claude-code-mastery`. Visibility: **Private**.
-4. Click **Create repository**.
+1. Open the course repository on GitHub (your admin sends the link).
+2. Check you can see it, and that you've accepted any invitation.
+
+> Never push to `main`. It's everyone's starting point, and it's usually protected so you can't.
 
 ## Step 2: Store your API key as a Codespaces secret
 
@@ -31,7 +33,7 @@ never touches the repository.
 1. Go to **github.com → your avatar → Settings → Codespaces**.
 2. Under **Secrets**, click **New secret**.
 3. Name: `ANTHROPIC_API_KEY`. Value: your key.
-4. **Repository access**: choose your new `claude-code-mastery` repository.
+4. **Repository access**: choose the course repository.
 5. Click **Add secret**.
 
 > If you skip this step, GitHub will ask for the secret when you create the Codespace,
@@ -39,7 +41,8 @@ never touches the repository.
 
 ## Step 3: Create the Codespace
 
-1. On *your* repository page, click **Code → Codespaces → Create codespace on main**.
+1. On the course repository page, click **Code → Codespaces → Create codespace on main**.
+   (You'll switch to your own branch in Day 1, step 1.)
 2. Wait 2–4 minutes for the first build. It installs Python 3.12, `uv`, the GitHub CLI and
    **Claude Code**, then runs `.devcontainer/post-create.sh`.
 3. When the terminal shows **"All set!"**, you're ready.
@@ -77,8 +80,10 @@ Type `/exit` (or press `Ctrl+D` twice) to quit for now.
 
 - **Stop your Codespace when you're done for the day**: Codespaces menu → *Stop current codespace*.
   It also stops automatically when idle. Your files are kept.
-- **Don't delete it** until the course is over. Your work and your cost ledger live in it.
-  (Your *commits* live on GitHub, so push regularly: `git push`.)
+- **Don't delete it** until the course is over. Your cost ledger lives in it.
+  Your *work* is safe on GitHub as long as you push your branch at the end of every day: `git push`.
+- **New Codespace?** If you ever create a fresh one, switch to your branch first:
+  `git fetch && git switch firstname-lastname`.
 - A 2-core machine is plenty.
 
 ---

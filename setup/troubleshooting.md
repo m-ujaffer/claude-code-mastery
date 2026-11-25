@@ -52,6 +52,14 @@ The dev database was created with the old schema. It's disposable:
 rm practice-app/taskforge.db
 ```
 
+## `git push` is rejected, or says "no upstream branch"
+
+- **"no upstream branch"**: you haven't pushed your branch yet. Run `git push -u origin <your-branch>` once.
+- **Rejected on `main`**: `main` is protected. Make sure you're on your branch: `git branch --show-current`.
+  If you committed on `main` by mistake: `git switch <your-branch> && git merge main`.
+- **"fetch first" / non-fast-forward**: your branch changed elsewhere (another Codespace, or a PR merge).
+  Run `git pull`, then push again.
+
 ## Port 8000 doesn't open
 
 Open the **Ports** tab, find 8000 and click the globe icon. Add `/docs` to the URL for Swagger.

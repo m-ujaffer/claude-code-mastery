@@ -89,6 +89,12 @@ uv run labcheck log w5d25 1.10 "TF-109 refactor with handoffs"
 
 Week 5 total should be **≤ $7**.
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w5d25: Reliability on long tasks (TF-109)" && git push
+```
+
 ## 🚀 Stretch
 
 - Ask the Day 21 `code-reviewer` subagent to review the full refactor diff (`git diff <first-commit>..HEAD`).

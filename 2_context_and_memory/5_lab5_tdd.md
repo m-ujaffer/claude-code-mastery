@@ -80,6 +80,12 @@ uv run labcheck log w2d10 0.75 "TF-106 TDD"
 
 Week 2 total should be **≤ $4**.
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w2d10: TDD with Claude (TF-106)" && git push
+```
+
 ## 🚀 Stretch
 
 - Add a CLAUDE.md "Definition of done" line requiring coverage on `services.py` to stay above 90%.

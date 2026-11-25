@@ -118,6 +118,12 @@ uv run labcheck log w3d15 0.90 "team plugin"
 
 Week 3 total should be **≤ $5**.
 
+## 📤 Push your progress
+
+```bash
+git add -A && git commit -m "w3d15: Package a team plugin (mini-project)" && git push
+```
+
 ## 🚀 Stretch
 
 - Bump the version to 0.2.0 with a change, and read the docs on how teammates receive plugin updates.
