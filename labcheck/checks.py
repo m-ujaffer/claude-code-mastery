@@ -331,8 +331,10 @@ asyncio.run(main())
 def _probe_mcp(c: Ctx) -> dict | None:
     proc = c.run(sys.executable, "-c", MCP_PROBE, env=c.pytest_env(), timeout=60)
     if proc.returncode != 0:
-        c.check(False, "taskforge.mcp_server imports and lists its tools",
-                (proc.stderr.strip().splitlines() or ["?"])[-1])
+        last = (proc.stderr.strip().splitlines() or ["?"])[-1]
+        if "No module named 'mcp'" in last:
+            last = "the MCP SDK isn't installed yet: run  uv sync --all-groups"
+        c.check(False, "taskforge.mcp_server imports and lists its tools", last)
         return None
     return json.loads(proc.stdout.strip().splitlines()[-1])
 

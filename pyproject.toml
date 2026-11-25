@@ -16,11 +16,14 @@ dependencies = [
     "ruff>=0.6",
     "jsonschema>=4.22",
     "pyyaml>=6.0",
-    # Week 4: MCP servers
-    "mcp>=2.0",
-    # Week 6: Claude Agent SDK
-    "claude-agent-sdk>=0.1",
 ]
+
+# Larger packages only needed later in the course. They are not installed by a
+# plain `uv sync` / `uv run`, so Day 1 setup stays small and fast.
+# Install them with:  uv sync --all-groups   (post-create.sh does this for you)
+[dependency-groups]
+mcp = ["mcp>=2.0"]                # Week 4: MCP servers
+sdk = ["claude-agent-sdk>=0.1"]   # Week 6: Claude Agent SDK (large wheel, bundles a CLI)
 
 [project.scripts]
 labcheck = "labcheck.cli:main"

@@ -14,6 +14,7 @@ Run through this checklist before each cohort, about 1–2 hours.
    settings, sub-agents, MCP, GitHub Actions and the Agent SDK.
 3. **Run the solution check:**
    ```bash
+   uv sync --all-groups      # the Week 4/6 checks need the MCP and Agent SDK packages
    uv run python scripts/build_checkpoints.py --verify
    ```
    This applies every overlay in `solutions/` to a temporary copy of the repo and runs all 30

@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import csv
 import datetime as dt
+import importlib.util
 import json
 import os
 import re
@@ -135,6 +136,14 @@ def cmd_doctor(args, root: Path) -> int:
     line(proc.returncode == 0, "TaskForge tests pass", "uv run pytest")
     line((root / "notes" / "cost-log.csv").exists(), "notes/cost-log.csv exists",
          "bash .devcontainer/post-create.sh")
+
+    # Optional packages: needed from Week 4 / Week 6 only, so they never fail doctor.
+    for module, label in (("mcp", "MCP SDK (Week 4)"), ("claude_agent_sdk", "Claude Agent SDK (Week 6)")):
+        if importlib.util.find_spec(module) is not None:
+            print(f"  {GREEN}✔{RESET} {label} installed")
+        else:
+            print(f"  {YELLOW}…{RESET} {label} not installed yet (optional until then)"
+                  f"\n      ↳ uv sync --all-groups")
     print(f"\n  {'Ready to go!' if ok else 'Fix the items above, then run: uv run labcheck doctor'}")
     return 0 if ok else 1
 

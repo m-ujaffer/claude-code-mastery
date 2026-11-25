@@ -2,6 +2,29 @@
 
 Start with `uv run labcheck doctor`. It checks most of the things below.
 
+## `Failed to download …` / `operation timed out` during `uv sync` or `uv run` {#download-timeout}
+
+The Codespace couldn't reach PyPI (`files.pythonhosted.org`) in time. This is almost always temporary.
+
+1. Wait a minute, then retry with a longer timeout:
+   ```bash
+   UV_HTTP_TIMEOUT=120 uv sync
+   uv run labcheck doctor
+   ```
+2. Still failing? Re-run the full setup. It retries each step three times:
+   ```bash
+   bash .devcontainer/post-create.sh
+   ```
+3. Last resort: stop and restart the Codespace (Codespaces menu → *Stop current codespace*), then try again.
+
+**What gets installed when:** a plain `uv sync` or `uv run` installs only the core course packages. The larger
+Week 4 (MCP) and Week 6 (Claude Agent SDK) packages come from:
+```bash
+uv sync --all-groups
+```
+The setup script runs this for you. If it didn't finish, run it before Week 4. `uv sync` without `--all-groups`
+removes those packages again, so when you sync by hand, add `--all-groups`.
+
 ## `claude: command not found` {#claude-not-found}
 
 The devcontainer feature didn't finish. Try, in order:

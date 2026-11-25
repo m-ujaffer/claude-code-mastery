@@ -39,7 +39,10 @@ need to be committed.
 
 ## 🛠️ Steps
 
+Make sure this week’s packages are installed (quick if they already are), then copy the notes template:
+
 ```bash
+uv sync --all-groups
 cp notes/templates/w4d16-mcp.md notes/w4d16-mcp.md
 ```
 

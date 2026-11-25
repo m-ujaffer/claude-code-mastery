@@ -11,6 +11,9 @@
       "documentationUrl": "https://github.com/YOUR-ORG/claude-code-mastery/blob/main/setup/SETUP-codespaces.md"
     }
   },
+  "containerEnv": {
+    "UV_HTTP_TIMEOUT": "120"
+  },
   "postCreateCommand": "bash .devcontainer/post-create.sh",
   "customizations": {
     "vscode": {

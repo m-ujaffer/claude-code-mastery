@@ -15,7 +15,7 @@ budgets and in-process custom tools.
 
 ## 📖 Primer
 
-The **Claude Agent SDK** (`pip install claude-agent-sdk`, already installed here) packages Claude Code's agent loop
+The **Claude Agent SDK** (`pip install claude-agent-sdk`; here it comes from `uv sync --all-groups`) packages Claude Code's agent loop
 as a library:
 
 ```python
@@ -57,6 +57,12 @@ Things to know:
 whole loop yourself.
 
 ## 🛠️ Steps
+
+Make sure the Agent SDK is installed (quick if it already is):
+
+```bash
+uv sync --all-groups
+```
 
 **1. Build a release-notes agent.** Ask Claude to create `sdk_agents/release_notes_agent.py` to this spec
 (plan mode first, then review the plan):
